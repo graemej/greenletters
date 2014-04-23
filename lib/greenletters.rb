@@ -308,7 +308,7 @@ module Greenletters
       @output_buffer  = StringScanner.new("")
       @env            = options.fetch(:env) {{}}
       @cwd            = options.fetch(:cwd) {Dir.pwd}
-      @ignore_select_errors = options.fetch(:ignore_errors) {false}
+      @ignore_select_errors = options.fetch(:ignore_select_errors) {false}
       @logger   = options.fetch(:logger) {
         l = ::Logger.new($stdout)
         l.level = DEFAULT_LOG_LEVEL
