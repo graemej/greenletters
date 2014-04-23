@@ -491,7 +491,11 @@ module Greenletters
 
     def process_output(handle)
       @logger.debug "output ready #{handle.inspect}"
-      data = handle.readpartial(1024)
+      begin
+        data = handle.readpartial(1024)
+      rescue EOFError
+        return
+      end
       output_buffer << data
       @history << data
       @logger.debug format_input_for_log(data)
