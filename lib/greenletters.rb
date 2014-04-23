@@ -308,7 +308,7 @@ module Greenletters
       @output_buffer  = StringScanner.new("")
       @env            = options.fetch(:env) {{}}
       @cwd            = options.fetch(:cwd) {Dir.pwd}
-      @ignore_errors  = options.fetch(:ignore_errors) {false}
+      @ignore_select_errors = options.fetch(:ignore_errors) {false}
       @logger   = options.fetch(:logger) {
         l = ::Logger.new($stdout)
         l.level = DEFAULT_LOG_LEVEL
@@ -532,7 +532,7 @@ module Greenletters
     end
 
     def process_error(handle)
-      return if @ignore_errors
+      return if @ignore_select_errors
       @logger.debug "error on #{handle.inspect}"
       raise NotImplementedError, "process_error()"
     end
